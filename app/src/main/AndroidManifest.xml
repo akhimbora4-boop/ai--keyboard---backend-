@@ -4,8 +4,7 @@
 
     <application
         android:label="Asim Keyboard"
-        android:icon="@mipmap/ic_launcher"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
 
         <service
             android:name=".KeyboardService"
