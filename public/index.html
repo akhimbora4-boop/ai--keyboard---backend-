@@ -1,1 +1,132 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Keyboard</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .keyboard {
+      width: 100%;
+      max-width: 600px;
+      padding: 15px;
+    }
+
+    #input {
+      width: 100%;
+      height: 100px;
+      background: #222;
+      color: white;
+      border: 1px solid #444;
+      border-radius: 12px;
+      padding: 15px;
+      font-size: 20px;
+      resize: none;
+      margin-bottom: 15px;
+    }
+
+    .row {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 6px;
+    }
+
+    button {
+      flex: 1;
+      min-height: 50px;
+      border: none;
+      border-radius: 8px;
+      background: #292929;
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+    }
+
+    button:active {
+      background: #555;
+      transform: scale(0.96);
+    }
+
+    .wide {
+      flex: 1.8;
+    }
+
+    .space {
+      flex: 5;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="keyboard">
+
+    <textarea id="input" placeholder="Type something..."></textarea>
+
+    <!-- Row 1 -->
+    <div class="row">
+      <button>Q</button>
+      <button>W</button>
+      <button>E</button>
+      <button>R</button>
+      <button>T</button>
+      <button>Y</button>
+      <button>U</button>
+      <button>I</button>
+      <button>O</button>
+      <button>P</button>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="row">
+      <button>A</button>
+      <button>S</button>
+      <button>D</button>
+      <button>F</button>
+      <button>G</button>
+      <button>H</button>
+      <button>J</button>
+      <button>K</button>
+      <button>L</button>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="row">
+      <button>⇧</button>
+      <button>Z</button>
+      <button>X</button>
+      <button>C</button>
+      <button>V</button>
+      <button>B</button>
+      <button>N</button>
+      <button>M</button>
+      <button>⌫</button>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="row">
+      <button>123</button>
+      <button>😊</button>
+      <button class="space">Space</button>
+      <button>Enter</button>
+    </div>
+
+  </div>
+
+</body>
+</html>
