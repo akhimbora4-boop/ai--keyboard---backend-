@@ -5,7 +5,6 @@
     android:horizontalGap="4dp"
     android:verticalGap="6dp">
 
-    <!-- Row 1: Numbers -->
     <Row>
         <Key android:codes="49" android:keyLabel="1"/>
         <Key android:codes="50" android:keyLabel="2"/>
@@ -19,13 +18,12 @@
         <Key android:codes="48" android:keyLabel="0"/>
     </Row>
 
-    <!-- Row 2: Symbols -->
     <Row>
         <Key android:codes="64" android:keyLabel="@"/>
         <Key android:codes="35" android:keyLabel="#"/>
         <Key android:codes="8377" android:keyLabel="₹"/>
         <Key android:codes="95" android:keyLabel="_"/>
-        <Key android:codes="38" android:keyLabel="&"/>
+        <Key android:codes="38" android:keyLabel="&amp;"/>
         <Key android:codes="45" android:keyLabel="-"/>
         <Key android:codes="43" android:keyLabel="+"/>
         <Key android:codes="40" android:keyLabel="("/>
@@ -33,7 +31,6 @@
         <Key android:codes="47" android:keyLabel="/"/>
     </Row>
 
-    <!-- Row 3: More Symbols -->
     <Row>
         <Key android:codes="-4" android:keyLabel="=/<" android:keyWidth="10%p"/>
         <Key android:codes="42" android:keyLabel="*"/>
@@ -46,7 +43,6 @@
         <Key android:codes="-5" android:keyIcon="@android:drawable/ic_delete" android:keyWidth="10%p"/>
     </Row>
 
-    <!-- Row 4: Bottom Row -->
     <Row>
         <Key android:codes="-2" android:keyLabel="ABC" android:keyWidth="15%p"/>
         <Key android:codes="44" android:keyLabel="," android:keyWidth="10%p"/>
