@@ -128,14 +128,49 @@
 
   </div>
   <script>
-    const input = document.getElementById("input");
-    const buttons = document.querySelectorAll("button");
+const input = document.getElementById("input");
+const keyboard = document.querySelector(".keyboard");
 
-    let shiftOn = false;
+let shiftOn = false;
+let numberMode = false;
 
-    buttons.forEach(button => {
-      button.addEventListener("click", () => {
-        const key = button.textContent;
+const letters = [
+  ["Q","W","E","R","T","Y","U","I","O","P"],
+  ["A","S","D","F","G","H","J","K","L"],
+  ["⇧","Z","X","C","V","B","N","M","⌫"],
+  ["123","😊","Space","Enter"]
+];
+
+const numbers = [
+  ["1","2","3","4","5","6","7","8","9","0"],
+  ["-","/",";",":","(",")","$","&","@","\""],
+  ["#+=",".",",","?","!","'","⌫"],
+  ["ABC","😊","Space","Enter"]
+];
+
+function createKeyboard() {
+
+  document.querySelectorAll(".key-row").forEach(row => row.remove());
+
+  const keys = numberMode ? numbers : letters;
+
+  keys.forEach(row => {
+
+    const rowDiv = document.createElement("div");
+    rowDiv.className = "row key-row";
+
+    row.forEach(key => {
+
+      const button = document.createElement("button");
+      button.textContent = key;
+
+      if (key === "Space") {
+        button.className = "space";
+      }
+
+      rowDiv.appendChild(button);
+
+      button.onclick = () => {
 
         // Shift
         if (key === "⇧") {
@@ -168,19 +203,47 @@
           return;
         }
 
-        // Number button
+        // Numbers
         if (key === "123") {
-  input.value += "";
-  return;
-}
+          numberMode = true;
+          createKeyboard();
+          return;
+        }
+
+        // ABC
+        if (key === "ABC") {
+          numberMode = false;
+          createKeyboard();
+          return;
+        }
+
+        // Symbols
+        if (key === "#+=") {
+          return;
+        }
 
         // Letters
-        if (/^[A-Z]$/.test(key)) {
-          input.value += shiftOn ? key : key.toLowerCase();
+        if (!numberMode && /^[A-Z]$/.test(key)) {
+          input.value += shiftOn
+            ? key
+            : key.toLowerCase();
         }
-      });
+
+        // Numbers and symbols
+        if (numberMode) {
+          input.value += key;
+        }
+
+      };
+
     });
-  </script>
+
+    keyboard.appendChild(rowDiv);
+  });
+}
+
+createKeyboard();
+</script>
 
 </body>
 </html>
