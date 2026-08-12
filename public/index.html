@@ -127,6 +127,59 @@
     </div>
 
   </div>
+  <script>
+    const input = document.getElementById("input");
+    const buttons = document.querySelectorAll("button");
+
+    let shiftOn = false;
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        const key = button.textContent;
+
+        // Shift
+        if (key === "⇧") {
+          shiftOn = !shiftOn;
+          button.style.background = shiftOn ? "#555" : "#292929";
+          return;
+        }
+
+        // Backspace
+        if (key === "⌫") {
+          input.value = input.value.slice(0, -1);
+          return;
+        }
+
+        // Space
+        if (key === "Space") {
+          input.value += " ";
+          return;
+        }
+
+        // Enter
+        if (key === "Enter") {
+          input.value += "\n";
+          return;
+        }
+
+        // Emoji
+        if (key === "😊") {
+          input.value += "😊";
+          return;
+        }
+
+        // Number button
+        if (key === "123") {
+          return;
+        }
+
+        // Letters
+        if (/^[A-Z]$/.test(key)) {
+          input.value += shiftOn ? key : key.toLowerCase();
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
