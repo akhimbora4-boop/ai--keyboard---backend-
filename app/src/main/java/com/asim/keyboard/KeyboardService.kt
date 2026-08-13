@@ -28,18 +28,18 @@ class KeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionListe
         return keyboardView
     }
 
-    // এই নতুন function টো add কৰিলোঁ - key ৰ letter সলনি কৰাৰ বাবে
-    private fun updateShiftState() {
-        for (key in keyboard.keys) {
-            if (key.label!= null && key.label.length == 1) {
-                val letter = key.label[0]
-                if (Character.isLetter(letter)) {
-                    key.label = if (isCaps) letter.uppercaseChar().toString()
-                                else letter.lowercaseChar().toString()
-                }
+    private fun handleShift() {
+        isCaps =!isCaps
+        keyboard.isShifted = isCaps // key ৰ background change ৰ বাবে
+        
+        // প্রতিটো key ৰ label নিজে change কৰা
+        val keys = keyboard.keys
+        for (key in keys) {
+            if (key.label!= null && key.label.length == 1 && Character.isLetter(key.label[0])) {
+                key.label = if (isCaps) key.label.toString().uppercase() else key.label.toString().lowercase()
             }
         }
-        keyboardView.invalidateAllKeys()
+        keyboardView.invalidateAllKeys() // UI refresh
     }
 
     override fun onKey(primaryCode: Int, keyCodes: IntArray?) {
@@ -48,8 +48,7 @@ class KeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionListe
 
         when (primaryCode) {
             -1 -> { // SHIFT
-                isCaps =!isCaps
-                updateShiftState() // ইয়াত key বোৰ refresh হব
+                handleShift()
             }
             -2 -> { // 123 / ABC button
                 isSymbols =!isSymbols
@@ -57,7 +56,9 @@ class KeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionListe
                     keyboardView.keyboard = symbolsKeyboard
                 } else {
                     keyboardView.keyboard = keyboard
-                    updateShiftState() // QWERTY লৈ উভতি আহিলে shift state ঠিক কৰা
+                    if(isCaps) handleShift() // QWERTY লৈ আহিলে shift ঠিক কৰা
+                    handleShift() // 2বাৰ call কৰি আকৌ আগৰ state লৈ অনা
+                    handleShift()
                 }
             }
             -4 -> { // Clipboard
@@ -78,14 +79,11 @@ class KeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionListe
                 ic.commitText(" ", 1)
             }
             else -> { // Normal letter/number
-                var code = primaryCode.toChar()
+                ic.commitText(primaryCode.toChar().toString(), 1)
+                // 1টা letter type কৰাৰ পিছত shift off
                 if(isCaps) {
-                    code = code.uppercaseChar()
-                    // 1টা capital type কৰাৰ পিছত auto small
-                    isCaps = false
-                    updateShiftState()
+                    handleShift()
                 }
-                ic.commitText(code.toString(), 1)
             }
         }
     }
