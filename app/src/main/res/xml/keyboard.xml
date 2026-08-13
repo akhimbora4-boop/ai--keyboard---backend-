@@ -44,8 +44,8 @@
 
     <Row>
         <Key android:codes="-2" android:keyLabel="123" android:keyWidth="15%p"/>
-        <Key android:codes="-3" android:keyIcon="@android:drawable/ic_dialog_info" android:keyWidth="10%p"/>
-        <Key android:codes="32" android:keyLabel="SPACE" android:isRepeatable="true" android:keyWidth="40%p"/>
+        <Key android:codes="-4" android:keyLabel="📋" android:keyWidth="10%p"/>  <!-- এই line টো নতুন -->
+        <Key android:codes="32" android:keyLabel="SPACE" android:isRepeatable="true" android:keyWidth="30%p"/> <!-- 40%p ৰ পৰা 30%p কৰিলোঁ -->
         <Key android:codes="46" android:keyLabel="." android:keyWidth="10%p"/>
         <Key android:codes="10" android:keyLabel="ENTER" android:keyWidth="15%p"/>
     </Row>
